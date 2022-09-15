@@ -42,6 +42,9 @@ class SignInScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(18.0),
                         ),
                       ),
+
+                      //BTN ENTRAR
+
                       onPressed: () {},
                       child: const Text(
                         'Entrar',
@@ -51,6 +54,9 @@ class SignInScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+
+                  //ESQUECEU A SENHA
+
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
@@ -60,7 +66,30 @@ class SignInScreen extends StatelessWidget {
                         style: TextStyle(color: Colors.red),
                       ),
                     ),
-                  )
+                  ),
+
+                  // DIVISOR
+
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
+                          color: Colors.grey.withAlpha(90),
+                          thickness: 2,
+                        ),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 15.0),
+                        child: Text('Ou'),
+                      ),
+                      Expanded(
+                        child: Divider(
+                          color: Colors.grey.withAlpha(90),
+                          thickness: 2,
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
