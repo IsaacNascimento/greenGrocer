@@ -1,9 +1,25 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:greengrocer/src/config/custom_color.dart';
+import 'package:greengrocer/src/home/components/categoria_tile.dart';
 
-class HomeTab extends StatelessWidget {
+class HomeTab extends StatefulWidget {
   const HomeTab({Key? key}) : super(key: key);
+
+  @override
+  State<HomeTab> createState() => _HomeTabState();
+}
+
+class _HomeTabState extends State<HomeTab> {
+  List<String> categorias = [
+    'Frutas',
+    'Legumes',
+    'Verduras',
+    'Temperos',
+    'Cereais',
+  ];
+
+  String selectedCategory = 'Frutas';
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +89,26 @@ class HomeTab extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
+          Container(
+            padding: const EdgeInsets.only(left: 25.0),
+            height: 40,
+            child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (_, index) {
+                  return CategoryTile(
+                    onPressed: () {
+                      setState(() {
+                        selectedCategory = categorias[index];
+                      });
+                    },
+                    category: categorias[index],
+                    isSelected: categorias[index] == selectedCategory,
+                  );
+                },
+                separatorBuilder: (_, index) => const SizedBox(width: 10),
+                itemCount: categorias.length),
+          ),
         ],
       ),
     );
