@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:greengrocer/src/config/custom_color.dart';
 import 'package:greengrocer/src/pages/home/components/categoria_tile.dart';
 import 'package:greengrocer/src/config/app_data.dart' as app_data;
+import 'package:greengrocer/src/pages/home/components/item_tile.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({Key? key}) : super(key: key);
@@ -118,8 +119,8 @@ class _HomeTabState extends State<HomeTab> {
                   childAspectRatio: 9 / 11.5),
               itemCount: app_data.items.length,
               itemBuilder: (_, index) {
-                return Container(
-                  color: Colors.red,
+                return ItemTile(
+                  item: app_data.items[index],
                 );
               },
             ),
