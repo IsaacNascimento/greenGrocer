@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:greengrocer/src/config/custom_color.dart';
 import 'package:greengrocer/src/models/item_model.dart';
+import 'package:greengrocer/src/services/utils_services.dart';
 
 class ProductScreen extends StatelessWidget {
   final ItemModel item;
-  const ProductScreen({super.key, required this.item});
+  final UtilsService utilsServices = UtilsService();
+  ProductScreen({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -53,11 +56,34 @@ class ProductScreen extends StatelessWidget {
                       ),
                     ],
                   ),
+
                   // Preco
+                  Text(
+                    utilsServices.priceToCurrency(item.price),
+                    style: TextStyle(
+                        fontSize: 23,
+                        fontWeight: FontWeight.bold,
+                        color: CustomColors.customSwatchColor),
+                  ),
 
                   // Descricao
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: SingleChildScrollView(
+                        child: Text(
+                          item.description,
+                          style: const TextStyle(height: 1.5),
+                        ),
+                      ),
+                    ),
+                  ),
 
                   // Botao
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: const Text('Botao'),
+                  ),
                 ],
               ),
             ),

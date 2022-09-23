@@ -4,6 +4,7 @@ import 'package:greengrocer/src/models/item_model.dart';
 import 'package:greengrocer/src/pages/product/product_screen.dart';
 import 'package:greengrocer/src/services/utils_services.dart';
 
+// ignore: must_be_immutable
 class ItemTile extends StatelessWidget {
   final ItemModel item;
   ItemTile({super.key, required this.item});
