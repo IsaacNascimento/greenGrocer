@@ -60,6 +60,7 @@ class _HomeTabState extends State<HomeTab> {
       ),
       body: Column(
         children: [
+          // Campo de Pesquisa
           Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
@@ -83,6 +84,8 @@ class _HomeTabState extends State<HomeTab> {
               ),
             ),
           ),
+
+          // Categoria
           Container(
             padding: const EdgeInsets.only(left: 25.0),
             height: 40,
@@ -101,6 +104,25 @@ class _HomeTabState extends State<HomeTab> {
                 },
                 separatorBuilder: (_, index) => const SizedBox(width: 10),
                 itemCount: app_data.categorias.length),
+          ),
+
+          // Grid
+          Expanded(
+            child: GridView.builder(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+              physics: const BouncingScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                  childAspectRatio: 9 / 11.5),
+              itemCount: app_data.items.length,
+              itemBuilder: (_, index) {
+                return Container(
+                  color: Colors.red,
+                );
+              },
+            ),
           ),
         ],
       ),
