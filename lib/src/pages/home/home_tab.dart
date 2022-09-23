@@ -1,7 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:greengrocer/src/config/custom_color.dart';
-import 'package:greengrocer/src/home/components/categoria_tile.dart';
+import 'package:greengrocer/src/pages/home/components/categoria_tile.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({Key? key}) : super(key: key);
