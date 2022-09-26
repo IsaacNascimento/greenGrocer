@@ -1,13 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:greengrocer/src/config/custom_color.dart';
+import 'package:greengrocer/src/models/cart_item_model.dart';
 import 'package:greengrocer/src/pages/cart/components/cart_tile.dart';
 import 'package:greengrocer/src/services/utils_services.dart';
 import 'package:greengrocer/src/config/app_data.dart' as app_data;
 
-class CartTab extends StatelessWidget {
-  CartTab({super.key});
+class CartTab extends StatefulWidget {
+  const CartTab({super.key});
 
+  @override
+  State<CartTab> createState() => _CartTabState();
+}
+
+class _CartTabState extends State<CartTab> {
   final UtilsService utilsService = UtilsService();
+
+  void removeItemFromCard(CartItemModel cartItem) {
+    setState(() {
+      app_data.cartItems.remove(cartItem);
+    });
+  }
+
+  double cartTotalPrice() {
+    double total = 0;
+
+    for (var item in app_data.cartItems) {
+      total += item.totalPrice();
+    }
+
+    return total;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,18 +38,16 @@ class CartTab extends StatelessWidget {
         title: const Text('Carrinho'),
       ),
       body: Column(
-
         children: [
-           Expanded(
+          Expanded(
             child: ListView.builder(
-              itemCount: app_data.cartItems.length,
-              itemBuilder: (_, index) {
-                return CartTile(cartItem: app_data.cartItems[index]);
-              }),
+                itemCount: app_data.cartItems.length,
+                itemBuilder: (_, index) {
+                  return CartTile(
+                      cartItem: app_data.cartItems[index],
+                      remove: removeItemFromCard);
+                }),
           ),
-
-    
-
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -53,7 +73,7 @@ class CartTab extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  utilsService.priceToCurrency(50.99),
+                  utilsService.priceToCurrency(cartTotalPrice()),
                   style: TextStyle(
                     fontSize: 23,
                     color: CustomColors.customSwatchColor,
@@ -62,18 +82,18 @@ class CartTab extends StatelessWidget {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: CustomColors.customSwatchColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18)
-                    )
-                  ),
+                      backgroundColor: CustomColors.customSwatchColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18))),
                   onPressed: () {},
-                  child: const Text('Concluir pedido', style: TextStyle(fontSize: 18),),
+                  child: const Text(
+                    'Concluir pedido',
+                    style: TextStyle(fontSize: 18),
+                  ),
                 ),
               ],
             ),
           ),
-
         ],
       ),
     );
